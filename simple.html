@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora</title>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+  
+    function vaciar() {
+      document.getElementById("pantalla").value = "";
+    }
+
+    function cuadrado() {
+      let num = document.getElementById("pantalla");
+      let texto = document.getElementById("info");
+      num.value = num.value * num.value;
+      if (num.value < 100){
+          texto.innerHTML = "Info: El resultado es menor que 100"
+          
+      } else if (num.value < 200){
+          texto.innerHTML = "Info: El resultado está entre 100 y 200"
+
+      }else{
+          texto.innerHTML = "Info: El resultado es superior a 200"    
+      }
+        
+    }
+
+    function cubo() {
+      let num = document.getElementById("pantalla");
+      let texto = document.getElementById("info");
+      num.value = num.value * num.value * num.value;
+      if (num.value < 100){
+          texto.innerHTML = "Info: El resultado es menor que 100"
+          
+      } else if (num.value < 200){
+          texto.innerHTML = "Info: El resultado está entre 100 y 200"
+
+      }else{
+          texto.innerHTML = "Info: El resultado es superior a 200"    
+      }
+        
+    }
+
+    function mod() {
+      let num = document.getElementById("pantalla");
+      if (num.value < 0){
+        num.value = - num.value;
+
+      }else {
+        num.value = num.value;
+      }
+          
+    }
+
+
+
+
+    function fact () {
+      let num = document.getElementById("pantalla");
+      //let texto = document.getElementById("info");
+      //var total = 1; 
+      //for (i=1; i<=num; i++) {
+      //  total = total * i; 
+    //}
+    //return total; 
+      if ((num === 0) || (num === 1))
+        return 1;
+      else
+        return (num * factorial(num - 1));
+    }
+  
+    //function rellenar_info(){
+      
+      //if (num.value < 100){
+      //    texto.innerHTML = "Info: El resultado es menor que 100"
+          
+      //} else if (num.value < 200){
+        //  texto.innerHTML = "Info: El resultado está entre 100 y 200"
+
+      //}else{
+        //  texto.innerHTML = "Info: El resultado es superior a 200"
+          
+      //}
+      
+    //}
+
+  </script>
+</head>
+
+<body>
+    <div>
+        <h1>Calculadora de CORE</h1>
+
+        Número:
+        <input type="text" id="pantalla" onclick="vaciar()">
+    </div>
+  
+  
+    <div>
+        
+        <h2 id="info" class="grande" title="Info sobre el número" onclick="rellenar_info()">
+            Info sobre el número
+            
+        </h2>        
+    </div>
+
+
+    <div>
+        <h2>Operaciones unitarias</h2>
+        <button id="cuadrado" onclick="cuadrado()">x<sup>2</sup></button>
+        <button id="cubo" onclick="cubo()">x<sup>3</sup></button>
+        <button id="modulo" onclick="mod()">Mod()</button>
+        <button id="factorial" onclick="fact()">n!</button>
+    </div>
+  
+
+ </body>
+</html>

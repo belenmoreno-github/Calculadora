@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora</title>
+  <link href="estilo_index.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8">
+  <script type="text/javascript">
+
+    const vaciar = () => {
+    document.getElementById("pantalla").value = "";
+  }
+
+
+    function rellenar_info() {
+        if (num < 100){
+            document.getElementById("info").innerHTML = "Info: El resultado es menor que 100";
+            
+        } else if (num > 100 && num < 200){
+            document.getElementById("info").innerHTML = "Info: El resultado está entre 100 y 200";
+
+        }else{
+            document.getElementById("info").innerHTML = "Info: El resultado es superior a 200";    
+        }
+
+}
+
+    // Operaciones unitarias
+    var cuadrado = () => {
+        let num = document.getElementById("pantalla");
+        
+        num.value = num.value * num.value;
+        rellenar_info(num)
+        }
+</script>
+
+    
+</head>
+
+
+<body>
+  <div>
+    <h1>Calculadora de CORE</h1>
+
+    Número:
+    <input type="text" id="pantalla" onclick="vaciar()">
+  
+
+  
+        
+    <h2 id="info" class="grande" title="Info sobre el número" >
+        Info sobre el número
+        
+    </h2>        
+  
+  
+  
+  
+    <h3>Operaciones unitarias</h3>
+    <button id="cuadrado" onclick="cuadrado()">x<sup>2</sup></button>
+    <button id="cubo" onclick="cubo()">x<sup>3</sup></button>
+    <button id="modulo" onclick="mod()">Mod()</button>
+    <button id="factorial" onclick="fact()">n!</button>
+  </div>
