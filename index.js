@@ -24,7 +24,7 @@ var rellenar_info = (numero) => {
     }else if (numero > 200){
         document.getElementById("info").innerHTML = "Info: El resultado es superior a 200";    
     }else{
-        document.getElementById("info").innerHTML = "Error";    
+        document.getElementById("info").innerHTML = "";    
     }
 }
 
@@ -185,7 +185,7 @@ var eq = (solucion) => {
         rellenar_info(solucion);
         result(solucion);
         vaciar();
-        //validar falla
+        
     }
     
 }
@@ -199,7 +199,7 @@ var coma = ",";
 
 var sumatorio = () => {
     num = document.getElementById("pantalla").value;
-    validar(num);
+    validar_lista(num);
     lista = num.split(coma);
     i = 0;
     aux = 0;
@@ -214,7 +214,7 @@ var sumatorio = () => {
 
 var ordenar = () => {
     num = document.getElementById("pantalla").value;
-    validar(num);
+    validar_lista(num);
     lista = num.split(coma);
     lista.sort((a,b) => a-b);
     rellenar_info(lista);
@@ -223,7 +223,7 @@ var ordenar = () => {
 
 var revertir = () => {
     num = document.getElementById("pantalla").value;
-    validar(num);
+    validar_lista(num);
     lista = num.split(coma);
     lista = lista.reverse();
     rellenar_info(lista);
@@ -233,13 +233,12 @@ var revertir = () => {
 
 var quitar = () => {
     num = document.getElementById("pantalla").value;
-    //validar(num);
     validar_lista(num);
     lista = num.split(coma);
     lista.pop();
     rellenar_info(lista);
     result(lista);
-    //validar falla
+    
 }
 
 
@@ -250,7 +249,7 @@ var validar = () => {
         num = Number(num);
     }
     catch(err) {
-        alert("Error al introducir los datos. Vuelva a intentarlo");
+        alert("Error, se han introducido de forma incorrecta los datos.");
     }
 }
 
@@ -258,14 +257,16 @@ var validar = () => {
 
 var validar_lista = () => {
     num = document.getElementById("pantalla").value;
-    try {
-        if (isArray(num)){ 
-            num = Array(num);
+    lista = num.split(",");
+    for (i of lista) {
+        try {
+        if(isNaN(i)) throw "Error, se han introducido de forma incorrecta los datos.";
+        i = Number(i)
         }
+        catch (error) {
+            alert("Error, se han introducido de forma incorrecta los datos.");
     }
-    catch(err) {
-        alert("Error al introducir los datos. Vuelva a intentarlo");
-    }
+  }
+
 }
 
-//me fallan las comas también
