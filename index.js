@@ -1,4 +1,5 @@
 //declaración de variables 
+
 let num = 0;
 let num1 = 0;
 let num2 = 0;
@@ -20,8 +21,10 @@ var rellenar_info = (numero) => {
     }else if (numero > 100 && numero < 200){
         document.getElementById("info").innerHTML = "Info: El resultado está entre 100 y 200";
 
-    }else{
+    }else if (numero > 200){
         document.getElementById("info").innerHTML = "Info: El resultado es superior a 200";    
+    }else{
+        document.getElementById("info").innerHTML = "Error";    
     }
 }
 
@@ -34,6 +37,7 @@ var result = (numero) => {
 
 var cuadrado = () => {
     num = document.getElementById("pantalla").value;
+    validar(num);
     num = num * num;
     rellenar_info(num);
     result(num);
@@ -42,6 +46,7 @@ var cuadrado = () => {
 
 var cubo = () => {
     num = document.getElementById("pantalla").value;
+    validar(num);
     num = num * num * num;
     rellenar_info(num);
     result(num);
@@ -50,6 +55,7 @@ var cubo = () => {
 
 var mod = () => {
     num = document.getElementById("pantalla").value;
+    validar(num);
     if (num < 0){
       num = - num;
       rellenar_info(num);
@@ -64,19 +70,22 @@ var mod = () => {
 
 var fact = () => {
     num = document.getElementById("pantalla").value;
+    validar(num);
     var total = 1; 
 	for (i=1; i<=num; i++) {
 		total = total * i;
+        rellenar_info(total);
+        result(total);
     }
-    rellenar_info(total);
-    result(total);
 }
+
 
 
 //Operaciones binarias
 
 var add = () => {
     num1 = document.getElementById("pantalla").value;
+    validar(num1);
     vaciar();
     operador = "suma";  
     eq(num1);
@@ -85,6 +94,7 @@ var add = () => {
 
 var resta = () => {
     num1 = document.getElementById("pantalla").value;
+    validar(num1);
     vaciar();
     operador = "resta";  
     eq(num1);
@@ -92,6 +102,7 @@ var resta = () => {
 
 var mul = () => {
     num1 = document.getElementById("pantalla").value;
+    validar(num1);
     vaciar();
     operador = "multiplicacion";  
     eq(num1);
@@ -100,6 +111,7 @@ var mul = () => {
 
 var division = () => {
     num1 = document.getElementById("pantalla").value;
+    validar(num1);
     vaciar();
     operador = "division";
     eq(num1);
@@ -107,6 +119,7 @@ var division = () => {
 
 var resto = () => {
     num1 = document.getElementById("pantalla").value;
+    validar(num1);
     vaciar();
     operador = "resto";  
     eq(num1);
@@ -114,14 +127,17 @@ var resto = () => {
 
 var potencia = () =>{
     num1 = document.getElementById("pantalla").value;
+    validar(num1);
     vaciar();
     operador = "potencia";  
     eq(num1);
 }
 
 var eq = (solucion) => {
+
     if (operador == "suma"){
         num2 = document.getElementById("pantalla").value;
+        validar(num2);
         solucion = (Number(num1) + Number(num2));
         result(solucion);
         rellenar_info(solucion);
@@ -130,6 +146,7 @@ var eq = (solucion) => {
         
     } else if (operador == "resta"){
         num2 = document.getElementById("pantalla").value;
+        validar(num2);
         solucion = (Number(num1) - Number(num2));
         result(solucion);
         rellenar_info(solucion);
@@ -138,6 +155,7 @@ var eq = (solucion) => {
     
     }else if (operador == "multiplicacion"){
         num2 = document.getElementById("pantalla").value;
+        validar(num2);
         solucion = (Number(num1) * Number(num2));
         result(solucion);
         rellenar_info(solucion);
@@ -145,6 +163,7 @@ var eq = (solucion) => {
 
     }else if (operador == "division"){
         num2 = document.getElementById("pantalla").value;
+        validar(num2);
         solucion = (Number(num1) / Number(num2));
         result(solucion);
         rellenar_info(solucion);
@@ -152,6 +171,7 @@ var eq = (solucion) => {
 
     }else if (operador == "resto"){
         num2 = document.getElementById("pantalla").value;
+        validar(num2);
         solucion = (Number(num1) % Number(num2));
         result(solucion);
         rellenar_info(solucion);
@@ -159,13 +179,17 @@ var eq = (solucion) => {
 
     }else if (operador == "potencia"){
         num2 = document.getElementById("pantalla").value;
+        validar(num2);
         solucion = (Number(num1) ** Number(num2));
-        result(solucion);
+        
         rellenar_info(solucion);
+        result(solucion);
         vaciar();
-
+        //validar falla
     }
+    
 }
+
 
 
 //Operaciones formato CSV
@@ -175,9 +199,10 @@ var coma = ",";
 
 var sumatorio = () => {
     num = document.getElementById("pantalla").value;
-    let lista = num.split(coma);
-    let i = 0;
-    let aux = 0;
+    validar(num);
+    lista = num.split(coma);
+    i = 0;
+    aux = 0;
     while (i < lista.length) {
         aux += +lista[i++];
         num = aux;
@@ -189,16 +214,17 @@ var sumatorio = () => {
 
 var ordenar = () => {
     num = document.getElementById("pantalla").value;
-    let lista = num.split(coma);
-    lista = lista.sort();
+    validar(num);
+    lista = num.split(coma);
+    lista.sort((a,b) => a-b);
     rellenar_info(lista);
     result(lista);
-    // no me va con dos digitos
-}
+} 
 
 var revertir = () => {
     num = document.getElementById("pantalla").value;
-    let lista = num.split(coma);
+    validar(num);
+    lista = num.split(coma);
     lista = lista.reverse();
     rellenar_info(lista);
     result(lista);
@@ -207,18 +233,39 @@ var revertir = () => {
 
 var quitar = () => {
     num = document.getElementById("pantalla").value;
-    let lista = num.split(coma);
-    lista = lista.pop();
-    //console.log(lista);
+    //validar(num);
+    validar_lista(num);
+    lista = num.split(coma);
+    lista.pop();
     rellenar_info(lista);
     result(lista);
-   //como ver la lista sin el elemento
+    //validar falla
 }
 
-//xq se me va actualizando cada numero que meto
 
 var validar = () => {
     num = document.getElementById("pantalla").value;
-    
-    
+    try {
+        if (isNaN(num)) throw "Error, se han introducido de forma incorrecta los datos.";
+        num = Number(num);
+    }
+    catch(err) {
+        alert("Error al introducir los datos. Vuelva a intentarlo");
+    }
 }
+
+
+
+var validar_lista = () => {
+    num = document.getElementById("pantalla").value;
+    try {
+        if (isArray(num)){ 
+            num = Array(num);
+        }
+    }
+    catch(err) {
+        alert("Error al introducir los datos. Vuelva a intentarlo");
+    }
+}
+
+//me fallan las comas también
